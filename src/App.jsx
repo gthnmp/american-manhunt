@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { gsap } from 'gsap';
 
 import Logo from './assets/Logo.png';
 import titleImage from './assets/MainTitle.png';
@@ -13,8 +12,6 @@ import Episode3 from './assets/Eps3.png';
 import Trailer1 from './assets/Trailer1.jpg'
 import Trailer2 from './assets/Trailer2.jpg'
 import Star from './assets/star.png';
-
-gsap.registerPlugin(ScrollTrigger);
 
 
 const Episode = ({ episodeTitle, title, image }) => (
@@ -38,7 +35,7 @@ const Introduction = () => {
   const information = [2023, '1 Season', 'Documentaries', '16+'];
 
   return (
-    <div id="hero-content" className="text-white max-w-2xl h-screen px-16">
+    <div id="hero-content" className="text-white max-w-xl h-screen">
 
       <div className="absolute top-10 w-24 left-16">
         <img src={Logo} alt="" />
@@ -46,7 +43,7 @@ const Introduction = () => {
 
 			<div id = "main-content" className='gap-10 h-screen flex flex-col justify-center'>
 				<img src={titleImage} alt="main-title" className="select-none" draggable="false" />
-				<h1 className="gotham text-xl">{briefDescription}</h1>
+				<h1 className="gotham text-xl text-gray-300">{briefDescription}</h1>
 				<ul>
 					{information.map((item, index) => (
 						<li key={index} className="inline-block mr-4 text-gray-300">
@@ -68,7 +65,7 @@ const Introduction = () => {
 };
 
 const Videos = () => (
-	<div className='bg-neutral-950 w-full px-16 flex flex-col gap-10'>
+	<div className='bg-neutral-950 w-full flex flex-col gap-10'>
 		<div>
 			<h1 className="text-4xl gotham font-bold">Videos</h1>
 		</div>
@@ -78,8 +75,9 @@ const Videos = () => (
 			<Episode episodeTitle={"Trailer 2"} title={"American Manhunt: The Boston"} image={Trailer2}/>
 		</div>
 		
-		<div>	
+		<div className='max-w-xl flex flex-col gap-4'>	
 			<h1 className='text-4xl gotham font-bold'>Episodes</h1>
+			<p className='text-gray-400'>Archive footage, chilling reenactments and exclusive interviews shed new light on a tragedy — and two brothers — that suspended a city in terror.</p>
 		</div>
 
 		<div className='flex justify-center gap-10'>
@@ -91,10 +89,29 @@ const Videos = () => (
 	</div>
 );
 
+const Footer = () => (
+	<footer className='bg-neutral-950 text-gray-400 flex justify-center h-96 border-t-2 border-neutral-500 my-20 py-20'>
+		<div className='flex flex-col gap-5 items-center'>
+			<ul className='flex gap-10 font-light'>
+				<li><a href="">Github</a></li>
+				<li><a href="">Linkedin</a></li>
+				<li><a href="">Twitter</a></li>
+				<li><a href="">Youtube</a></li>
+				<li><a href="">Instagram</a></li>
+			</ul>
+			<div className='flex flex-col items-center gap-4'>
+				<p className='font-thin'>Made With Vite, React, and Tailwind</p>
+				<h1 className='font-bold'>Jue Viole Grace</h1>
+			</div>
+		</div>
+	</footer>
+)
+
 const Content = () => (
-  <div id="content" className="absolute w-full h-screen flex flex-col text-white">
+  <div id="content" className="absolute w-full h-screen flex flex-col gap-5 px-16 text-white">
     <Introduction />
 		<Videos/>
+		<Footer/>
   </div>
 );
 
@@ -103,7 +120,7 @@ const BackgroundImage = () => {
 
   return (
     <div id="bg-image" className="absolute w-full h-screen z-[-1]">
-      {isOverlayVisible && <div id="overlay" className="fixed bg-black opacity-40 w-full h-full"></div>}
+      {isOverlayVisible && <div id="overlay" className="fixed bg-neutral-950 opacity-40 w-full h-full"></div>}
       <img src={bgImage} className="object-cover w-full h-full" alt="background" onLoad={() => setIsOverlayVisible(true)} />
     </div>
   );
