@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import Logo from '/react.svg';
 import titleImage from './assets/MainTitle.png';
-import bgImage from './assets/Eps2.png';
 import Episode1 from './assets/Eps1.png';
 import Episode2 from './assets/Eps2.png';
 import Episode3 from './assets/Eps3.png';
@@ -120,10 +120,10 @@ const Videos = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center gap-10 text-2xl">
+      {/* <div className="flex justify-center gap-10 text-2xl">
         <button>{"<"}</button>
         <button>{">"}</button>
-      </div>
+      </div> */}
       <div>
         <h1 className="text-4xl gotham font-bold">Videos</h1>
       </div>
@@ -141,15 +141,15 @@ const Details = () => {
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl gotham font-bold">More Details</h1>
         <div>
-          <h2 className="text-2xl gotham font-normal">Watch Offline</h2>
+          <h2 className="text-white text-2xl gotham font-normal">Watch Offline</h2>
           <p className="text-gray-400 text-base">Available To Download</p>
         </div>
         <div>
-          <h2 className="text-2xl gotham font-normal">Genres</h2>
+          <h2 className="text-white text-2xl gotham font-normal">Genres</h2>
           <p className="text-gray-400 text-base">Historical Documentaries, Crime TV Shows, Docuseries, US TV Shows, True Crime Documentaries</p>
         </div>
         <div>
-          <h2 className="text-2xl gotham font-normal">More</h2>
+          <h2 className="text-white text-2xl gotham font-normal">More</h2>
           <p className="text-gray-400 text-base">Go behind the scenes and learn more on Tudum.com</p>
         </div>
       </div>
@@ -188,9 +188,39 @@ const Footer = () => {
 };
 
 const Content = () => {
-  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+  let current = 0;
+  let target = 0;
+  const ease = 0.07;
+
+  function lerp (start, end, t) {
+    return start * (1 - t) + end * t;
+  }
+
+  function setTransform(element, change){
+    element.style.transform = change;
+  }
+
+  function smoothScroll(){
+    current = lerp(current, target, ease);
+    current = parseFloat(current.toFixed(2));
+    target = window.scrollY;
+
+    setTransform(contentRef.current, `translateY(${-current}px)`)
+    requestAnimationFrame(smoothScroll);
+  }
+
+  useEffect(() => {
+    const contentHeight = contentRef.current.getBoundingClientRect().height 
+    document.body.style.height = `${contentHeight}px`
+    console.log(document.body.style.height)
+    smoothScroll();
+    window.addEventListener("wheel", (e) => {
+      console.log(window.scrollY);
+    })
+  },[])
   return (
-    <div id="content" ref={containerRef} className="absolute will-change-transform w-screen h-max flex flex-col gap-5 px-16 text-white">
+    <div id="content" ref = {contentRef} className="fixed will-change-transform w-screen h-max flex flex-col gap-5 px-16 text-white">
       <Introduction />
       <Videos />
       <Details />
