@@ -9,7 +9,7 @@ import Footer from './Footer'
 
 const Content = () => {
 	return (
-		<SmoothWrapper>
+		<SmoothWrapper className="text-white">
 			<Introduction />
 			<Videos />
 			<Details />
