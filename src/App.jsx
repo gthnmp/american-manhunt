@@ -1,16 +1,32 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react';
 
-import Navbar from './components/Navbar'
-import Content from './components/Content'
+import { 
+	SmoothWrapper,
+	Preloader,
+	Introduction,
+	Videos,
+	Details,
+	Footer, 
+} from './components';
 
-function App() {
-  return (
-    <div className="flex justify-center">
-      <Content />
-    </div>
-  );
+export default function App(){
+	const [ isLoading, setIsLoading ] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false)
+		},3000)
+	},[])
+	return (
+		<>
+			<Preloader /> 
+			<SmoothWrapper className={`text-white transition-opacity ease-in-out duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+				<Introduction />
+				<Videos />
+				<Details />
+				<Footer />
+			</SmoothWrapper>
+		</>
+	);
 }
 
-export default App;

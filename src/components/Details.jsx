@@ -1,4 +1,4 @@
-const Details = () => {
+export default function Details(){
 	return (
 		<div className="bg-neutral-950">
 			<div className="flex flex-col gap-4">
@@ -18,6 +18,4 @@ const Details = () => {
 			</div>
 		</div>
 	);
-};
-
-export default Details;
+}

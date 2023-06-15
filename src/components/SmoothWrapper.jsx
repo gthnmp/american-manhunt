@@ -8,7 +8,7 @@ const SmoothWrapper = ({ className: additionalClassNames, ...props }) => {
   let current = 0;
   let target = 0;
   const defaultClassName =
-    'fixed will-change-transform w-screen h-max flex flex-col gap-5 px-8 lg:px-16';
+    'fixed will-change-transform w-screen h-max flex flex-col gap-20 px-8 lg:px-16';
   const customizedClassName = `${defaultClassName} ${additionalClassNames}`;
 
   useEffect(() => {

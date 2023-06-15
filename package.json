@@ -1,5 +1,5 @@
 {
-  "name": "gathan-mahesa",
+  "name": "American Manhunt Series Review Website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "^3.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

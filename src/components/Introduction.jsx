@@ -1,13 +1,10 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 import titleImage from '../assets/MainTitle.png';
-import Episode1 from '../assets/Eps1.png';
 import Episode2 from '../assets/Eps2.png';
-import Episode3 from '../assets/Eps3.png';
-
 import Star from '../assets/star.png';
 
-const Introduction = () => {
+export default function Introduction () {
 	const briefDescription = 'Uncover the gripping truth of American Manhunt: The Boston Marathon Bombing, a Netflix documentary that reveals the intense investigation and manhunt for justice after the tragic 2013 event.';
 	const information = [2023, '1 Season', 'Documentaries', '16+'];
 
@@ -40,6 +37,4 @@ const Introduction = () => {
 				
 			</div>
 	);
-};
-
-export default Introduction;
+}
